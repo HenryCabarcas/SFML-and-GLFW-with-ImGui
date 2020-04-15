@@ -35,3 +35,5 @@ GLFWwindow* fullscreenW(const char* name, int x, int y, GLFWmonitor* monitor);
 void monitor_callback(GLFWmonitor* monitor, int event);
 vector<GLMonitor> GLdetectMonitors(int numDisplay);
 void window_size_callback(GLFWwindow* window, int width, int height);
+void framebuffer_size_callback(GLFWwindow* window, int width, int height);
+void window_refresh_callback(GLFWwindow* window);

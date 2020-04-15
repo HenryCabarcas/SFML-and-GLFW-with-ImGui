@@ -2,7 +2,6 @@
 
 const char* GVersion() {
 	// Setup window
-	glfwSetErrorCallback(glfw_error_callback);
 	if (!glfwInit())
 		return NULL;
 
@@ -25,16 +24,14 @@ const char* GVersion() {
 	return glsl_version;
 }
 
-static void glfw_error_callback(int error, const char* description)
-{
-	string err = "Glfw Error " + to_string(error) + description;
-	Log(err);
-}
-
 bool GInit(GLFWwindow* window, bool vsync) {
 	if (window == NULL)
 		return false;
 	glfwSwapInterval(vsync);
+	glfwSetErrorCallback(glfw_error_callback);
+	//glfwSetWindowSizeCallback(window, window_size_callback);
+	//glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+	//glfwSetWindowRefreshCallback(window, window_refresh_callback);
 	// Initialize OpenGL loader
 #if defined(IMGUI_IMPL_OPENGL_LOADER_GL3W)
 	bool err = gl3wInit() != 0;
@@ -81,18 +78,6 @@ GLFWwindow* fullscreenW(const char* name, int x, int y, GLFWmonitor* monitor, GL
 	return window;
 }
 
-void monitor_callback(GLFWmonitor* monitor, int event)
-{
-	if (event == GLFW_CONNECTED)
-	{
-		// The monitor was connected
-	}
-	else if (event == GLFW_DISCONNECTED)
-	{
-		Log("Monitor disconnected");
-	}
-}
-
 void GLMonitor::MonInit(int numDisplay, int op) {
 	if (numDisplay == 1)
 	{
@@ -134,5 +119,34 @@ vector<GLMonitor> GLdetectMonitors(int numDisplay) {
 
 void window_size_callback(GLFWwindow* window, int width, int height)
 {
+	glViewport(0, 0, width, height);
+	glfwSwapBuffers(window);
+}
+
+void framebuffer_size_callback(GLFWwindow* window, int width, int height)
+{
+	//glViewport(0, 0, width, height);
+	glfwSwapBuffers(window);
+}
+
+void monitor_callback(GLFWmonitor* monitor, int event)
+{
+	if (event == GLFW_CONNECTED)
+	{
+		// The monitor was connected
+	}
+	else if (event == GLFW_DISCONNECTED)
+	{
+		Log("Monitor disconnected");
+	}
+}
+
+static void glfw_error_callback(int error, const char* description)
+{
+	string err = "Glfw Error " + to_string(error) + description;
+	Log(err);
+}
+
+void window_refresh_callback(GLFWwindow* window) {
 	glfwSwapBuffers(window);
 }

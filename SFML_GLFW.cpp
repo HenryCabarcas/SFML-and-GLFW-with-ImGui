@@ -42,9 +42,9 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 
 	switch (uMsg)                                       // Evaluate Window Message
 	{
-	case WM_ERASEBKGND:                             // Check To See If Windows Is Trying To Erase The Background
-		return 0;
-		break;
+		/*case WM_ERASEBKGND:                             // Check To See If Windows Is Trying To Erase The Background
+			return 0;
+			break;*/
 	case WM_CLOSE:
 		DestroyWindow(hWnd);
 		PostQuitMessage(0);

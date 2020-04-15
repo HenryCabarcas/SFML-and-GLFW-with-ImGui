@@ -69,22 +69,22 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(ProjectDir)$(Configuration)\</OutDir>
     <IntDir>$(ProjectDir)$(Configuration)\</IntDir>
-    <IncludePath>.\SFML\include;.\imgui;.\Headers;.\Sources;$(IncludePath)</IncludePath>
+    <IncludePath>.\SFML\include;.\imgui;.\Headers;.\Sources;imgui\libs\glad;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(ProjectDir)$(Configuration)\</OutDir>
     <IntDir>$(ProjectDir)$(Configuration)\</IntDir>
-    <IncludePath>.\SFML\include;.\imgui;.\Headers;.\Sources;$(IncludePath)</IncludePath>
+    <IncludePath>.\SFML\include;.\imgui;.\Headers;.\Sources;imgui\libs\glad;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(ProjectDir)$(Configuration)\</OutDir>
     <IntDir>$(ProjectDir)$(Configuration)\</IntDir>
-    <IncludePath>.\SFML\include;.\imgui;.\Headers;.\Sources;$(IncludePath)</IncludePath>
+    <IncludePath>.\SFML\include;.\imgui;.\Headers;.\Sources;imgui\libs\glad;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(ProjectDir)$(Configuration)\</OutDir>
     <IntDir>$(ProjectDir)$(Configuration)\</IntDir>
-    <IncludePath>.\SFML\include;.\imgui;.\Headers;.\Sources;$(IncludePath)</IncludePath>
+    <IncludePath>.\SFML\include;.\imgui;.\Headers;.\Sources;imgui\libs\glad;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -172,7 +172,7 @@
     <ClCompile Include="imgui\imgui_widgets.cpp" />
     <ClCompile Include="imgui\imgui_impl_glfw.cpp" />
     <ClCompile Include="imgui\imgui_impl_opengl3.cpp" />
-    <ClCompile Include="imgui\libs\gl3w\GL\gl3w.c" />
+    <ClCompile Include="imgui\libs\glad\glad.c" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SFML_GLFW.cpp" />
     <ClCompile Include="Sources\GLFW_Tools.cpp" />
@@ -189,8 +189,8 @@
     <ClInclude Include="imgui\imgui_internal.h" />
     <ClInclude Include="imgui\imgui_impl_glfw.h" />
     <ClInclude Include="imgui\imgui_impl_opengl3.h" />
-    <ClInclude Include="imgui\libs\gl3w\GL\gl3w.h" />
-    <ClInclude Include="imgui\libs\gl3w\GL\glcorearb.h" />
+    <ClInclude Include="imgui\libs\glad\glad.h" />
+    <ClInclude Include="imgui\libs\glad\khrplatform.h" />
     <ClInclude Include="SFML_GLFW.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

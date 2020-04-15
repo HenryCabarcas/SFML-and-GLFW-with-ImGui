@@ -17,17 +17,16 @@ int main(int, char**)
 	sf::Color bgColor;
 	SFLW::SFLWwindow win;
 	SFLW::SFLWwindow win2;
-
 	if (!win.create(sizex, sizey, "hi", SFLW::SDefault)) {
 		return 1;
 	}
+	ImGui_ImplOpenGL3_Init(glsl_version);
 	win.setVsync(false);
 	win.Swindow.setTitle(windowTitle);
 
 	ImGui::SFML::Init(win.Swindow);
 	ImGuiIO& io = ImGui::GetIO(); (void)io;
 	ImGui_ImplGlfw_InitForOpenGL(win.Gwindow, true);
-	//ImGui_ImplOpenGL3_Init(glsl_version);
 
 	while (win.Swindow.isOpen()) {
 		glfwPollEvents();
@@ -42,12 +41,19 @@ int main(int, char**)
 			{
 				win.view.reset(sf::FloatRect(sf::Vector2f(0, 0), sf::Vector2f(win.Swindow.getSize())));
 				win.Swindow.setView(win.view);
-				if (deltaClock.getElapsedTime().asMilliseconds() > 500)
+				glViewport(0, 0, win.Swindow.getSize().x, win.Swindow.getSize().y);
+				//win.Swindow.display();
+				//glfwSwapBuffers(win.Gwindow);
+				/*if (deltaClock.getElapsedTime().asMilliseconds() > 500)
 				{
-					glfwSwapBuffers(win.Gwindow);
-				}
+				}*/
+			}
+			if (event.type == sf::Event::MouseLeft)
+			{
 			}
 		}
+		//}
+
 		ImGui::SFML::Update(win.Swindow, deltaClock.restart());
 		//ImGui::SetCurrentContext()
 		resizewithmouse(win.Swindow);
@@ -70,20 +76,19 @@ int main(int, char**)
 			// but I do this to show how buttons work :)
 			win.Swindow.setTitle(windowTitle);
 		}
-		/*if (ImGui::Button("Create Window"))
+		if (ImGui::Button("Create Window"))
 		{
 			win2.create(500, 300, "Window2", SFLW::SNoBorder, NULL, win.Gwindow);
 			ImGui::SFML::Init(win2.Swindow);
 			ImGui_ImplGlfw_InitForOpenGL(win2.Gwindow, true);
 			is_win2 = true;
-		}*/
+		}
 		ImGui::Text("%.1ffps", GetIO().Framerate);
 		ImGui::End(); // end window
 		//glfwGetFramebufferSize(win.Gwindow, (INT*)win.Swindow.getSize().x, (INT*)win.Swindow.getSize().y);
 		//glViewport(0, 0, win.Swindow.getSize().x, 30);
 
 		glViewport(0, 30, win.Swindow.getSize().x, win.Swindow.getSize().y);
-
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		win.Swindow.clear(bgColor); // fill background with color
 		//win.pollEvents();
@@ -91,8 +96,9 @@ int main(int, char**)
 		win.Swindow.draw(sp);
 		win.Swindow.display();
 
-		/*if (is_win2)
+		if (is_win2)
 		{
+			glfwMakeContextCurrent(win2.Gwindow);
 			glfwPollEvents();
 			sf::Event event2;
 			while (win2.Swindow.pollEvent(event2)) {
@@ -123,10 +129,11 @@ int main(int, char**)
 			win2.Swindow.clear(bgColor); // fill background with color
 			ImGui::SFML::Render(win2.Swindow);
 			win2.Swindow.display();
+			glfwMakeContextCurrent(win.Gwindow);
 			//glfwSwapBuffers(win2.Gwindow);
 		//win2off:
 			//glfwMakeContextCurrent(win.Gwindow);
-		}*/
+		}
 	}
 
 	ImGui::SFML::Shutdown();
