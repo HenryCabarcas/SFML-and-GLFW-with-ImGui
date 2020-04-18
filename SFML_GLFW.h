@@ -1,8 +1,6 @@
 #pragma once
-#include "Dependances.h"
 #include "GLFW_Tools.h"
 #include "SFML_Tools.h"
-#include "Tools.h"
 namespace SFLW {
 	constexpr int SDefault = 0;
 	constexpr int SNoBorder = 1;
