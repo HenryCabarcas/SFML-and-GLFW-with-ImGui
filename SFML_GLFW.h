@@ -23,15 +23,15 @@ namespace SFLW {
 		int monitorcount = 1;
 		bool create(int resx, int resy, string name, int style, int mon, GLFWwindow* parent);
 		bool create(int resx, int resy, string name, int style, int mon) {
-			create(resx, resx, name, style, mon, NULL);
+			create(resx, resy, name, style, mon, NULL);
 			return true;
 		}
 		bool create(int resx, int resy, string name, int style) {
-			create(resx, resx, name, style, NULL, NULL);
+			create(resx, resy, name, style, NULL, NULL);
 			return true;
 		}
 		bool create(int resx, int resy, string name) {
-			create(resx, resx, name, 0, NULL, NULL);
+			create(resx, resy, name, 0, NULL, NULL);
 			return true;
 		}
 
